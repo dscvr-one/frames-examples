@@ -9,7 +9,8 @@
     "format": "prettier --write .",
     "prepare": "husky install",
     "getting-started": "pnpm --filter=getting-started run dev",
-    "poll": "pnpm --filter=poll run dev"
+    "poll": "pnpm --filter=poll run dev",
+    "media": "pnpm --filter=media run dev"
   },
   "keywords": [],
   "author": "",

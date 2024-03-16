@@ -1,0 +1,4 @@
+<svg>
+  <polygon id="triangle" points="0,0 0,50 50,0" fill="#009900" stroke="#004400"/>
+  <script type="text/javascript">alert("xss");</script>
+</svg>
