@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "prepare": "husky install",
-    "getting-started": "pnpm --filter=getting-started run dev"
+    "getting-started": "pnpm --filter=getting-started run dev",
+    "poll": "pnpm --filter=poll run dev"
   },
   "keywords": [],
   "author": "",
