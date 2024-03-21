@@ -10,7 +10,8 @@
     "prepare": "husky install",
     "getting-started": "pnpm --filter=getting-started run dev",
     "poll": "pnpm --filter=poll run dev",
-    "media": "pnpm --filter=media run dev"
+    "media": "pnpm --filter=media run dev",
+    "quiz": "pnpm --filter=quiz run dev"
   },
   "keywords": [],
   "author": "",
