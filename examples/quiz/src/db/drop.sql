@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS quiz.answer;
+DROP TABLE IF EXISTS quiz.question;
+DROP SCHEMA IF EXISTS quiz; 

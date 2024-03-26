@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS poll.vote;
+DROP TABLE IF EXISTS poll.answer;
+DROP TABLE IF EXISTS poll.question;
+DROP SCHEMA IF EXISTS poll; 
