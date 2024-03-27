@@ -37,7 +37,7 @@ export default function Intro({
               <div tw="justify-center items-center flex flex-col ">
                 <span>
                   This is an example of a frame that will redirect the user to
-                  an external link to purchase the DSCVR Explorer Pass, If you
+                  an external link to purchase the DSCVR Explorer Pass, if you
                   are among the first {question.giveaway_limit} correct answers.
                 </span>
                 <img
