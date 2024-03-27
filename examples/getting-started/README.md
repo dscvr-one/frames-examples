@@ -1,35 +1,39 @@
-# getting-started
+# Getting started
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This frame example display the current DSCVR user information.
+
+This is a [Next.js](https://nextjs.org/) project that uses frames.js, [DSCVR frames adapter](https://docs.dscvr.one/build/frames/frame-concepts.html#frames-adapter) and [DSCVR API](https://docs.dscvr.one/build/dscvr-api/).
 
 ## Getting Started
 
-First, run the development server:
+First, install the package
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, run the development server:
 
-You can start editing the page by modifying `src/app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result, a blank screen will be shown, but the html headers will show the frames information.
+
+## Debug your changes
+
+Since all of the action happens in the headers, go ahead an try our [DSCVR frame validator](https://dscvr.one/dev/frames):
+
+1. Once the project is running on port 3000, run `npx localtunnel --port 3000`
+2. Copy the provided url
+3. Go to [DSCVR frame validator](https://dscvr.one/dev/frames)
+4. Play with your frame!
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+In this example a frame message is validated by the [DSCVR frame adapter](https://docs.dscvr.one/build/frames/frame-concepts.html#frames-adapter) to make sure is a DSCVR message, then the information for the current user and content is gathered using the [DSCVR API](https://docs.dscvr.one/build/dscvr-api/) and shown as a response.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To learn more about Frames visit our [documentation](https://docs.dscvr.one/).
 
 ## Deploy on Vercel
 
