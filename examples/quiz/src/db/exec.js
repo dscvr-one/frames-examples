@@ -31,4 +31,7 @@ try {
   }
 } catch (err) {
   console.error(err);
+} finally {
+  await pool.end();
+  process.exit(0);
 }
