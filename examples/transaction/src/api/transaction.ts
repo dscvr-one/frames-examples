@@ -5,12 +5,7 @@ import {
 } from '@solana/web3.js';
 import * as bs58 from 'bs58';
 import type { FrameTransactionResponse, TokenType } from '../types';
-import {
-  doSPLReceive,
-  doSPLSend,
-  doSolanaReceive,
-  doSolanaSend,
-} from './solana';
+import { doSPLSend, doSolanaSend } from './solana';
 
 const createTransactionResponse = (
   chainId: string,
@@ -26,44 +21,12 @@ const createTransactionResponse = (
 };
 
 export const getCluster = () => {
-  return (process.env.SOLANA_CLUSTER || 'devnet') as Cluster;
+  const chainID = getChainId();
+  return (chainID === 'solana:101' ? 'mainnet-beta' : 'devnet') as Cluster;
 };
 
 export const getChainId = () => {
   return process.env.SOLANA_CHAIN_ID || 'solana:103';
-};
-
-export const handleReceiveTransaction = async (
-  userAddress: string,
-  amount: number,
-  tokenType: TokenType,
-  cluster: Cluster,
-  chainId: string,
-) => {
-  console.log(
-    'create-receive-transaction',
-    cluster,
-    chainId,
-    userAddress,
-    amount,
-    tokenType,
-  );
-  const userAddressPubkey = new PublicKey(userAddress);
-  const wifTokenPubkey = new PublicKey(
-    'EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm',
-  );
-  const isSPL = tokenType !== 'SOL';
-
-  // TODO (JM): WIF : test on devnet
-  const transferResponse = isSPL
-    ? await doSPLReceive(cluster, amount, userAddressPubkey, wifTokenPubkey)
-    : await doSolanaReceive(cluster, amount, userAddressPubkey);
-
-  if (!transferResponse) {
-    throw new Error('Invalid transaction');
-  }
-
-  return createTransactionResponse(chainId, transferResponse);
 };
 
 export const handleSendTransaction = async (
@@ -73,18 +36,10 @@ export const handleSendTransaction = async (
   tokenType: TokenType,
   cluster: Cluster,
   chainId: string,
-  legacy?: boolean, // TODO: Solve this with Chandra
+  legacy?: boolean,
 ) => {
-  console.log(
-    'create-send-transaction',
-    cluster,
-    chainId,
-    stateAddress,
-    userAddress,
-    amount,
-    tokenType,
-    legacy,
-  );
+  // TODO: Solve this with Chandra
+  console.log('legacy', legacy);
   const stateAddressPubkey = stateAddress
     ? new PublicKey(stateAddress)
     : undefined;
@@ -94,7 +49,6 @@ export const handleSendTransaction = async (
   );
   const isSPL = tokenType !== 'SOL';
 
-  // TODO (JM): WIF : test on devnet
   const transferResponse = isSPL
     ? await doSPLSend(
         cluster,

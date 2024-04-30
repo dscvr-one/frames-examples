@@ -18,6 +18,7 @@ import AmountStep from '../components/amount';
 import ProcessStep from '../components/process';
 import ResultStep from '../components/result';
 import { handleTransactionResult } from '../api/transaction-result';
+import { getCluster } from '../api/transaction';
 
 export default async function Page(props: NextServerPageProps) {
   const previousFrame = getPreviousFrame<State>(props.searchParams);
@@ -89,6 +90,18 @@ export default async function Page(props: NextServerPageProps) {
         );
       }
       const tokenType = frameMessage.buttonIndex === 1 ? 'SOL' : 'WIF';
+      const cluster = getCluster();
+      if (tokenType === 'WIF' && cluster !== 'mainnet-beta') {
+        return (
+          <AmountStep
+            previousFrame={previousFrame}
+            state={state}
+            username={data.user.username}
+            warning="Only mainnet-beta is supported for SPL tokens"
+          />
+        );
+      }
+
       return (
         <ProcessStep
           previousFrame={previousFrame}
@@ -105,17 +118,19 @@ export default async function Page(props: NextServerPageProps) {
         throw new Error('Invalid address');
       }
       if (!transactionId) {
-        throw new Error('Invalid address');
+        throw new Error('Invalid transaction Id');
       }
       const action: TransactionAction =
         frameMessage.buttonIndex === 1 ? 'send' : 'send_legacy';
       await handleTransactionResult(
-        state.address!,
         userAddress,
+        transactionId,
+        state.address!,
         state.amount!,
         state.tokenType!,
         action,
       );
+
       return (
         <ResultStep
           previousFrame={previousFrame}

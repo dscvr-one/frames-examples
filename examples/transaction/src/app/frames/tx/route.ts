@@ -33,7 +33,6 @@ export async function POST(req: NextRequest) {
     }
 
     const postBody: UnknownFrameRequest = await req.json();
-    console.log('postBody', postBody);
     if (!postBody || !isDscvrFrameMessage(postBody)) {
       throw new Error('This is not a DSCVR Frame');
     }
