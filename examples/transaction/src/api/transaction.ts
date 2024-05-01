@@ -36,10 +36,7 @@ export const handleSendTransaction = async (
   tokenType: TokenType,
   cluster: Cluster,
   chainId: string,
-  legacy?: boolean,
 ) => {
-  // TODO: Solve this with Chandra
-  console.log('legacy', legacy);
   const stateAddressPubkey = stateAddress
     ? new PublicKey(stateAddress)
     : undefined;

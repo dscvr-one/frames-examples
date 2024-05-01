@@ -1,4 +1,4 @@
-import type { TokenType, TransactionAction } from '../types';
+import type { TokenType } from '../types';
 import { getTransactionDetails } from './solana';
 import { getCluster } from './transaction';
 
@@ -8,7 +8,6 @@ export const handleTransactionResult = async (
   stateAddress: string,
   amount: number,
   tokenType: TokenType,
-  action: TransactionAction,
 ) => {
   const cluster = getCluster();
 
@@ -19,7 +18,6 @@ export const handleTransactionResult = async (
     stateAddress,
     amount,
     tokenType,
-    action,
   );
 
   const details = await getTransactionDetails(cluster, transactionId);

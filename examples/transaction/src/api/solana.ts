@@ -22,7 +22,7 @@ export const getTransactionDetails = (
 ) => {
   const connection = new Connection(clusterApiUrl(cluster));
   return connection.getParsedTransaction(transactionId, {
-    commitment: 'confirmed', // TODO: Should this be finalized?
+    commitment: 'confirmed',
     maxSupportedTransactionVersion: 0,
   });
 };

@@ -1,4 +1,4 @@
-import type { State, TransactionAction } from '@/src/types';
+import type { State } from '@/src/types';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import {
@@ -43,8 +43,6 @@ export async function POST(req: NextRequest) {
     if (!state.address || !state.amount || !state.tokenType || !userAddress) {
       throw new Error('Invalid transaction');
     }
-    const action: TransactionAction =
-      frameMessage.buttonIndex === 1 ? 'send' : 'send_legacy';
 
     const response = await handleSendTransaction(
       state.address!,
@@ -53,7 +51,6 @@ export async function POST(req: NextRequest) {
       state.tokenType,
       getCluster(),
       getChainId(),
-      action === 'send_legacy',
     );
     return NextResponse.json(response);
   } catch (e) {

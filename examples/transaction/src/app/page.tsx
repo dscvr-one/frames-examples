@@ -10,7 +10,7 @@ import {
   validateDscvrFrameMessage,
 } from '@dscvr-one/frames-adapter';
 import { dscvrApiUrl, getData } from '../api/dscvr';
-import type { State, TransactionAction } from '../types';
+import type { State } from '../types';
 import ErrorStep from '../components/error';
 import IntroStep from '../components/intro';
 import AddressStep from '../components/address';
@@ -120,15 +120,12 @@ export default async function Page(props: NextServerPageProps) {
       if (!transactionId) {
         throw new Error('Invalid transaction Id');
       }
-      const action: TransactionAction =
-        frameMessage.buttonIndex === 1 ? 'send' : 'send_legacy';
       await handleTransactionResult(
         userAddress,
         transactionId,
         state.address!,
         state.amount!,
         state.tokenType!,
-        action,
       );
 
       return (
@@ -137,7 +134,6 @@ export default async function Page(props: NextServerPageProps) {
           state={state}
           username={data.user.username}
           userAddress={userAddress}
-          action={action}
           transactionId={transactionId}
         />
       );

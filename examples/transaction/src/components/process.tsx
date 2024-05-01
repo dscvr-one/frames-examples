@@ -36,9 +36,6 @@ export default async function Process({
       <FrameButton action="tx" target={transactionUrl} post_url={resultUrl}>
         Send
       </FrameButton>
-      <FrameButton action="tx" target={transactionUrl} post_url={resultUrl}>
-        Send Legacy
-      </FrameButton>
     </FrameContainer>
   );
 }

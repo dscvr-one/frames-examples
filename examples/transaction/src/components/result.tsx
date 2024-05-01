@@ -1,5 +1,5 @@
 import type { PreviousFrame } from 'frames.js/next/types';
-import type { State, TransactionAction } from '../types';
+import type { State } from '../types';
 import { FrameButton, FrameContainer, FrameImage } from 'frames.js/next/server';
 
 export default async function Process({
@@ -7,14 +7,12 @@ export default async function Process({
   state,
   username,
   userAddress,
-  action,
   transactionId,
 }: {
   previousFrame: PreviousFrame<State>;
   state: State;
   username: string;
   userAddress: string;
-  action: TransactionAction;
   transactionId: string;
 }) {
   const amountStr = state.amount?.toFixed(10).replace(/0+$/, '');
@@ -29,11 +27,8 @@ export default async function Process({
         <div tw="w-full h-full bg-slate-700 text-white justify-center items-center flex flex-col p-20">
           <span tw="text-5xl mb-6">Congrats, {username}</span>
           <span>
-            You successfully {action === 'send' ? 'sent' : 'received'}{' '}
-            {`${amountStr} ${state.tokenType}`}{' '}
-            {action === 'send' ? 'to ' : 'from '}
-            the address {state.address} {action === 'send' ? 'from' : 'to'} to
-            your wallet {userAddress}
+            You successfully sent {`${amountStr} ${state.tokenType}`} to the
+            address {state.address} from your wallet {userAddress}
           </span>
         </div>
       </FrameImage>
