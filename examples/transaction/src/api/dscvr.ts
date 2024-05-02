@@ -30,7 +30,7 @@ const getDataQuery = graphql(`
   }
 `);
 
-export const dscvrApiUrl = 'https://api1.stg.dscvr.one/graphql';
+export const dscvrApiUrl = 'https://api.dscvr.one/graphql';
 
 export const getData = async (id: string, contentId?: string) => {
   const client = new Client({

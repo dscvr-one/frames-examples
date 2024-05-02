@@ -22,7 +22,7 @@ export default async function Address({
   type?: 'source' | 'target';
   warning?: string;
 }) {
-  const tokenList = await getTokenList();
+  const tokenList = getTokenList();
   const tokenPage = tokenList.slice(
     state.page * PAGE_SIZE,
     (state.page + 1) * PAGE_SIZE,

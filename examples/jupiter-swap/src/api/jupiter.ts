@@ -8,23 +8,13 @@ import {
 import type {
   JupiterQuoteResponse,
   JupiterSwapResponse,
-  JupiterToken,
   Token,
   TokenType,
 } from '../types';
+import { tokens } from './tokens';
 
 const getApiUrl = () => {
-  const url = process.env.JUPITER_API_URL;
-  if (!url) {
-    throw new Error('JUPITER_API_URL is not set');
-  }
-  return url;
-};
-
-const getTokenListEndpoint = () => {
-  return (
-    process.env.JUPITER_TOKEN_LIST_ENDPOINT || 'https://token.jup.ag/strict'
-  );
+  return process.env.JUPITER_API_URL || 'https://quote-api.jup.ag/v6';
 };
 
 export const getTransactionDetails = (
@@ -38,29 +28,20 @@ export const getTransactionDetails = (
   });
 };
 
-let singletonTokenList: Token[] = [];
-export const getTokenList = async (): Promise<Token[]> => {
-  if (singletonTokenList.length) {
-    singletonTokenList;
-  }
-  const endpointUrl = getTokenListEndpoint();
-  const tokenList: JupiterToken[] = await fetch(endpointUrl).then((response) =>
-    response.json(),
-  );
-  singletonTokenList = tokenList.map((token) => ({
+export const getTokenList = (): Token[] => {
+  return tokens.map((token) => ({
     type: token.symbol,
     name: token.name,
     icon: token.logoURI,
     mintAddress: token.address,
     decimals: token.decimals,
   }));
-  return singletonTokenList;
 };
 
 export const getToken = async (
   token?: TokenType,
 ): Promise<Token | undefined> => {
-  const list = await getTokenList();
+  const list = getTokenList();
   return list.find((t) => t.type === token);
 };
 

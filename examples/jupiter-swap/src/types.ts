@@ -36,6 +36,8 @@ export type JupiterToken = {
   name: string;
   symbol: string;
   logoURI: string;
+  tags?: string[];
+  extensions?: { [key: string]: string };
 };
 
 export type JupiterError = {

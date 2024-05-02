@@ -3,26 +3,16 @@ import { getTransactionDetails } from './solana';
 import { getCluster } from './transaction';
 
 export const handleTransactionResult = async (
-  userAddress: string,
+  userAddress: string, // eslint-disable-line no-unused-vars
   transactionId: string,
-  stateAddress: string,
-  amount: number,
-  tokenType: TokenType,
+  stateAddress: string, // eslint-disable-line no-unused-vars
+  amount: number, // eslint-disable-line no-unused-vars
+  tokenType: TokenType, // eslint-disable-line no-unused-vars
 ) => {
   const cluster = getCluster();
-
-  console.log(
-    'Success',
-    userAddress,
-    transactionId,
-    stateAddress,
-    amount,
-    tokenType,
-  );
 
   const details = await getTransactionDetails(cluster, transactionId);
   if (!details) {
     throw new Error('Invalid transaction details');
   }
-  console.log('details', details);
 };
