@@ -28,7 +28,7 @@ export default async function Page(props: NextServerPageProps) {
         <FrameContainer
           postUrl="/frames"
           pathname="/"
-          state={{}}
+          state={state}
           previousFrame={previousFrame}
         >
           <FrameImage>
@@ -77,7 +77,7 @@ export default async function Page(props: NextServerPageProps) {
         <FrameContainer
           postUrl="/frames"
           pathname="/"
-          state={{}}
+          state={state}
           previousFrame={previousFrame}
         >
           <FrameImage>
@@ -95,7 +95,7 @@ export default async function Page(props: NextServerPageProps) {
       <FrameContainer
         postUrl="/frames"
         pathname="/"
-        state={{}}
+        state={state}
         previousFrame={previousFrame}
       >
         <FrameImage>
