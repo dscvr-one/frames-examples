@@ -22,7 +22,9 @@ export default async function Address({
   type?: 'source' | 'target';
   warning?: string;
 }) {
-  const tokenList = getTokenList();
+  const tokenList = getTokenList().filter(
+    (token) => token.type !== state.srcTkn && token.type !== state.trgtTkn,
+  );
   const tokenPage = tokenList.slice(
     state.page * PAGE_SIZE,
     (state.page + 1) * PAGE_SIZE,

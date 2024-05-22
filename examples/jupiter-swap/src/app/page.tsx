@@ -116,6 +116,17 @@ export default async function Page(props: NextServerPageProps) {
             />
           );
         }
+
+        if (token.type === state.srcTkn) {
+          return (
+            <TokenStep
+              previousFrame={previousFrame}
+              state={state}
+              username={data.user.username}
+              warning="You must select a different token"
+            />
+          );
+        }
         return (
           <AmountStep
             previousFrame={previousFrame}
